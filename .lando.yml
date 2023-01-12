@@ -1,0 +1,15 @@
+name: workflows-demo
+recipe: drupal9
+config:
+  webroot: web
+  php: '8.1'
+services:
+  pma:
+    type: phpmyadmin
+    hosts:
+      - database
+tooling:
+  refresh-drupal:
+    service: appserver
+    description: Refreshes Drupal. Useful after db import.
+    cmd: drush updb -y ; drush cim -y ; drush cr
